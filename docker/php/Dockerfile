@@ -1,7 +1,7 @@
 FROM php:7.2-fpm-alpine
 
 RUN apk --no-cache add curl git bash zsh nano openssh zlib-dev pcre-dev ${PHPIZE_DEPS} \
-  && docker-php-ext-install opcache zip pdo pdo_mysql \
+  && docker-php-ext-install opcache zip pdo pdo_mysql bcmath \
   && curl -sSL https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
 RUN printf '[PHP]\ndate.timezone = "Europe/London"\n' > /usr/local/etc/php/conf.d/tzone.ini

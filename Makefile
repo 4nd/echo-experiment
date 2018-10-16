@@ -17,12 +17,15 @@ ci:
 sh:
 	@${PHP_COMMAND_PREFIX} bash
 
+start-consumer:
+	@${PHP_COMMAND_PREFIX} php artisan amqp:consume &
+
 start-workers:
 	@${PHP_COMMAND_PREFIX} supervisord -c /etc/supervisor/supervisord.conf
 	@${PHP_COMMAND_PREFIX} supervisorctl status all
 
 status-workers:
-	@${PHP_COMMAND_PREFIX} supervisorctl status all
+	@${PHP_COMMAND_PREFIX} supervisorctl status program:laravel-worker
 
 stop-workers:
 	@${PHP_COMMAND_PREFIX} supervisorctl stop all
