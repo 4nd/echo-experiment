@@ -1,10 +1,18 @@
 version: '2'
 services:
 
+  rabbitmq:
+    container_name: echo-rabbit
+    image: rabbitmq:management-alpine
+    ports:
+      - 15672:15672
+
   redis:
+    container_name: echo-redis
     image: redis:alpine
 
   node:
+    container_name: echo-node
     build:
       context: ./docker/node
     volumes:
@@ -13,6 +21,7 @@ services:
       - 6001:6001
 
   php:
+    container_name: echo-php
     build:
       context: ./docker/php
     working_dir: /var/www
@@ -20,6 +29,7 @@ services:
     - .:/var/www:cached
 
   web:
+    container_name: echo-web
     build:
       context: ./docker/nginx
       dockerfile: Dockerfile

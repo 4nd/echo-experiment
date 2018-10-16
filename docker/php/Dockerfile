@@ -18,5 +18,11 @@ RUN echo "xdebug.remote_enable = 1" >> /usr/local/etc/php/conf.d/docker-php-ext-
 RUN echo "xdebug.remote_host = host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 RUN echo "xdebug.max_nesting_level = 250" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
+RUN apk update && apk add -u python py-pip
+RUN pip install supervisor
+
+COPY supervisord.conf /etc/supervisor/supervisord.conf
+COPY laravel-worker.conf /etc/supervisor/conf.d/laravel-worker.conf
+
 ENV TERM xterm
 WORKDIR /var/www/html
