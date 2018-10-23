@@ -86,8 +86,7 @@
                 </div>
                 <div id="app">
                     <button @click="broadcast">Trigger An Echo Event</button>
-
-                    <p v-for="message in messages" v-text="message"></p>
+                    <p v-text="message"></p>
                 </div>
             </div>
         </div>

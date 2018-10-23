@@ -17,6 +17,9 @@ ci:
 sh:
 	@${PHP_COMMAND_PREFIX} bash
 
+dummy-queue:
+	@${PHP_COMMAND_PREFIX} php artisan ampq:post-dummy-entries
+
 start-consumer:
 	@${PHP_COMMAND_PREFIX} php artisan amqp:consume &
 
@@ -32,3 +35,5 @@ stop-workers:
 
 restart-workers:
 	@${PHP_COMMAND_PREFIX} supervisorctl restart all
+
+

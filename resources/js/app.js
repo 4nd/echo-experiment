@@ -21,14 +21,14 @@ const app = new Vue({
     el: '#app',
     data() {
         return {
-            messages: []
+            message: ""
         }
     },
 
     mounted() {
         window.Echo.channel('global')
             .listen('ExampleEvent', (e) => {
-                this.messages.unshift(e.data);
+                this.message = e.data;
             });
     },
 

@@ -17247,14 +17247,14 @@ var app = new Vue({
     el: '#app',
     data: function data() {
         return {
-            messages: []
+            message: ""
         };
     },
     mounted: function mounted() {
         var _this = this;
 
         window.Echo.channel('global').listen('ExampleEvent', function (e) {
-            _this.messages.unshift(e.data);
+            _this.message = e.data;
         });
     },
 
